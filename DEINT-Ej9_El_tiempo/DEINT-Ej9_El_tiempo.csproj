@@ -48,4 +48,26 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Resources\Raw\foggy.json" />
+	  <None Remove="Resources\Raw\mist.json" />
+	  <None Remove="Resources\Raw\partly-cloudy.json" />
+	  <None Remove="Resources\Raw\partly-shower.json" />
+	  <None Remove="Resources\Raw\snow-sunny.json" />
+	  <None Remove="Resources\Raw\snow.json" />
+	  <None Remove="Resources\Raw\storm.json" />
+	  <None Remove="Resources\Raw\stormshowersday.json" />
+	  <None Remove="Resources\Raw\sunny.json" />
+	  <None Remove="Resources\Raw\thunder.json" />
+	  <None Remove="Resources\Raw\windy.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="MVVM\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
+	</ItemGroup>
+
 </Project>
