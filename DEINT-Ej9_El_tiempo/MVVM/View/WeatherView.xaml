@@ -11,15 +11,16 @@
         <converters:CodeToWeatherConverter x:Key="codeToWeatherConverter" />
     </ContentPage.Resources>
     
-    <Grid Margin="15" RowDefinitions=".1*, .9*">
-        <SearchBar 
+    <Grid Margin="15" RowDefinitions=".08*, .92*">
+        <Grid Grid.Row="0">
+            <SearchBar 
             x:Name="searchBar"
-            Grid.Row="0" 
             Placeholder="Location name..." 
             Text="{Binding Address}"
             SearchCommand="{Binding SearchCommand}" 
             SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"/>
-        <Grid Grid.Row="1" RowDefinitions=".3*, .4*, .3*" IsVisible="{Binding IsVisible}">
+        </Grid>
+        <Grid Grid.Row="1" RowDefinitions=".2*, .6*, .2*" IsVisible="{Binding IsVisible}">
             <VerticalStackLayout Grid.Row="0">
                 <Label 
                     Text="{Binding Searched_Address}" 
