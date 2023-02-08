@@ -1,4 +1,6 @@
-﻿namespace DEINT_Ej9_El_tiempo;
+﻿using DEINT_Ej9_El_tiempo.MVVM.View;
+
+namespace DEINT_Ej9_El_tiempo;
 
 public partial class App : Application
 {
@@ -6,6 +8,6 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new AppShell();
+		MainPage = new WeatherView();
 	}
 }

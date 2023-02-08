@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DEINT_Ej9_El_tiempo.MVVM.View.WeatherView"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             xmlns:converters="clr-namespace:DEINT_Ej9_El_tiempo.MVVM.Converters"
+             Title="WeatherView">
+
+    <ContentPage.Resources>
+        <converters:CodeToLottieConverter x:Key="codeToLottieConverter" />
+        <converters:CodeToWeatherConverter x:Key="codeToWeatherConverter" />
+    </ContentPage.Resources>
+    
+    <Grid Margin="15" RowDefinitions=".1*, .9*">
+        <SearchBar 
+            x:Name="searchBar"
+            Grid.Row="0" 
+            Placeholder="Location name..." 
+            Text="{Binding Address}"
+            SearchCommand="{Binding SearchCommand}" 
+            SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"/>
+        <Grid Grid.Row="1" RowDefinitions=".3*, .4*, .3*" IsVisible="{Binding IsVisible}">
+            <VerticalStackLayout Grid.Row="0">
+                <Label 
+                    Text="{Binding Searched_Address}" 
+                    HorizontalOptions="Center" 
+                    FontSize="Title" 
+                    FontAttributes="Bold"/>
+                <Label 
+                    Text="{Binding CurrentDate, StringFormat='{0:MMMM dd, yyyy}'}" 
+                    HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            <skia:SKLottieView 
+                Grid.Row="1" 
+                RepeatCount="-1" 
+                Source="{Binding 
+                    WeatherData.current_weather.weathercode, 
+                    Converter={StaticResource codeToLottieConverter}}"/>
+            <Grid Grid.Row="2" ColumnDefinitions=".33*, .33*, .33*">
+                <VerticalStackLayout Grid.Column="0">
+                    <Label 
+                        Text="Temp"
+                        HorizontalOptions="Center"/>
+                    <Label 
+                        Text="{Binding WeatherData.current_weather.temperature, StringFormat='{0}ºC'}" 
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Label 
+                        Text="Wind"
+                        HorizontalOptions="Center"/>
+                    <Label 
+                        Text="{Binding WeatherData.current_weather.windspeed, StringFormat='{0}Km/h'}" 
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="2">
+                    <Label 
+                        Text="Weather"
+                        HorizontalOptions="Center"/>
+                    <Label 
+                        Text="{Binding 
+                            WeatherData.current_weather.weathercode, 
+                            Converter={StaticResource codeToWeatherConverter}}" 
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>
